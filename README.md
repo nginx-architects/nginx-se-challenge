@@ -36,7 +36,7 @@ This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and 
 www.example.com  |               |
 HTTP/Port 80     |               |       +-----------------+
                  |  nginx-plus   +------->                 |
-+---------------->    (ADC)      |       |      nginx1     |
++---------------->    (ADC)      |       |      nginx2     |
 www2.example.com |               |       |  (nginx-hello)  |
 HTTP/Port 443    |               |       |                 |
                  |               |       +-----------------+
