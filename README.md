@@ -79,13 +79,13 @@ etc/
 
 2. A Docker host. With [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-3. **Optional**: The demo uses hostnames: `example.com`, `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
+3. **Optional**: The demo uses hostnames: `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
 
 For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 
 ```bash
 # NGINX Plus SE challenge demo (local docker host)
-127.0.0.1 example.com www.example.com www2.example.com
+127.0.0.1 www.example.com www2.example.com
 ```
 
 **Note: DNS resolution between containers is provided automatically by docker networking**
