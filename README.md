@@ -1,6 +1,6 @@
 # NGINX SE Challenge
 
-Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for two or more HTTP services.
+Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for two or more HTTP services
 
 See the SE Challenge Minimum and extra credit requirements below
 
