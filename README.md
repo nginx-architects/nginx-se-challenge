@@ -130,7 +130,7 @@ Cloning your repository and typing “docker-compose up” should be only steps 
 
 The following is minimum addtions to be configured
 
-* HTTPS service for `www2.example.com` traffic over Port 443 (**Use a self-signed certificates provided**). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP (i.e. Client -> HTTPS -> NGINX -> HTTP -> webserver)
+* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP (i.e. Client -> HTTPS -> NGINX -> HTTP -> webserver)
 * HTTP to HTTPS redirect service for `www2.example.com`
 * Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers
 
