@@ -136,11 +136,22 @@ Or, if you made changes to any of the Docker containers or NGINX configurations,
 docker-compose up --force-recreate
 ```
 
-**Confirm** the containers are running
+**Confirm** the containers are running. You should see three containers running:
+
+```bash
+docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                                              NAMES
+7ed735c809b8        nginx-se-challenge_nginx-plus   "nginx -g 'daemon of…"   5 seconds ago       Up 4 seconds        0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp, 0.0.0.0:8080->8080/tcp   nginx-se-challenge_nginx-plus_1
+4910dca52bb7        nginx-se-challenge_nginx2       "nginx -g 'daemon of…"   6 seconds ago       Up 5 seconds        0.0.0.0:32815->80/tcp                                              nginx-se-challenge_nginx2_1
+6c9a92298116        nginx-se-challenge_nginx1       "nginx -g 'daemon of…"   6 seconds ago       Up 5 seconds        80/tcp                                                             nginx-se-challenge_nginx1_1
+```
 
 The demo environment is ready in seconds. You can access the `nginx-hello` demo website on **HTTP / Port 80** ([`http://localhost`](http://localhost) or [http://www.example.com](http://example.com)) and the NGINX API on **HTTP / Port 8080** ([`http://localhost:8080`](http://localhost))
 
 You should also be able to access the `nginx-hello` demo, expecting the host header `www2.example.com`, over **HTTPS / Port 443** (i.e. [`https://www2.example.com`](https://www2.example.com))
+
+> If the three expected containers are not running or you **suspect the environement is broken**:
+> **STOP** and contact your NGINX contact for help :-)
 
 ## The SE Challenge 
 
