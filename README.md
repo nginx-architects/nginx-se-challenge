@@ -4,7 +4,7 @@ Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for tw
 
 See the SE Challenge Minimum and extra credit requirements below
 
-You are tasked to build upon the demo environement and share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+You are tasked to build from the demo environement and share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
 
 Be prepared to present your demo environement and articulate the value of NGINX Plus
 
@@ -23,8 +23,9 @@ This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and 
 
 ### Topology
 
+The base demo environement you are tasked to build from
+
 ```
-# The base demo environement
                                         (nginx-hello upstream: nginx1:80, nginx2:80)
                  +---------------+                        
                  |               |       +-----------------+
