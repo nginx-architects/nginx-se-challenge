@@ -48,9 +48,11 @@ HTTP/Port 443    |               |       |                 |
 
 ## Prerequisites:
 
-1. A Docker host. With [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+1. NGINX evaluation license file. You can get it from [here](https://www.nginx.com/free-trial-request/)
 
-2. **Optional**: The demo uses hostnames: `example.com`, `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
+2. A Docker host. With [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+
+3. **Optional**: The demo uses hostnames: `example.com`, `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
 
 For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 
@@ -59,7 +61,7 @@ For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 127.0.0.1 example.com www.example.com www2.example.com
 ```
 
-Note: DNS resolution between containers is provided automatically by docker networking
+**Note: DNS resolution between containers is provided automatically by docker networking**
 
 ## Build and run the demo environment
 
@@ -128,6 +130,7 @@ The following is minimum addtions to be configured
 
 * HTTPS service for `www2.example.com` traffic over Port 443 (**Use a self-signed certificates provided**). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP (i.e. Client -> HTTPS -> NGINX -> HTTP -> webserver)
 * HTTP to HTTPS redirect service for `www2.example.com`
+* Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers
 
 #### Extra Credits  
 
