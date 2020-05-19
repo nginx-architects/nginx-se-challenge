@@ -1,10 +1,12 @@
-``# NGINX SE Challenge
+# NGINX SE Challenge
 
 Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for two or more HTTP services.
 
 See the SE Challenge Minimum and extra credit requirements below
 
 You are tasked to build upon the demo environement and share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+
+Be prepared to present your demo environement and articulate the value of NGINX Plus
 
 ### Goals 
 
@@ -73,7 +75,7 @@ Before we can start, we need to copy our NGINX Plus repo key and certificate (`n
 
 ```bash
 # Enter working directory
-cd nginx_challenge
+cd nginx-se-challenge
 
 # Make sure your Nginx Plus repo key and certificate exist here
 ls nginx-plus/etc/ssl/nginx/nginx-*
