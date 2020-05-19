@@ -88,7 +88,10 @@ For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 127.0.0.1 www.example.com www2.example.com
 ```
 
-**Note: NGINX has been preconfigured to use the Docker DNS server (127.0.0.11) to provide DNS resolution between containers**
+> **Note:**
+> DNS resolution between containers is provided by default using a new bridged network by docker networking and
+> NGINX has been preconfigured to use the Docker DNS server (127.0.0.11) to provide DNS resolution between NGINX and
+> upstream servers
 
 ## Build and run the demo environment
 
@@ -173,4 +176,4 @@ Enable any of the following features on the NGINX Plus load balancer for extra c
 
 ## Q&A 
 
-* This doesn’t need to be done in a vacuum.  You can always ask questions at any step along the way.  Clarity is important so you will not be penalized for asking any questions.
+* **This does not need to be done in a vacuum**.  You can always ask questions at any step along the way.  Clarity is important so you will not be penalized for asking any questions.
