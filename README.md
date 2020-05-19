@@ -1,0 +1,142 @@
+# NGINX SE Challenge
+
+Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for 2 or more HTTP services.
+
+You are tasked to build upon the demo environement. 
+
+Please share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+
+### Goals 
+
+ * Give us an understanding of how you operate as a Solution Engineer 
+ * Give you a feel for what it is like to work with NGINX Plus
+
+## The Demo environement
+
+This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and webservers (`nginx1` and `nginx2`):
+
+ * **NGINX Plus** `(R21)` based on centos 7. [NGINX Plus Documentation](https://docs.nginx.com/nginx/), and [resources](https://www.nginx.com/resources/) and [blog](https://www.nginx.com/blog/) is your best source of information for technical help. Detailed examples are found on the internet too!
+
+ * [**nginx-hello**](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello). A NGINX webserver that serves a simple page containing its hostname, IP address and port as wells as the request URI and the local time of the webserver.
+
+```
+# The base demo environement
+                                        (nginx-hello upstream: nginx1:80, nginx2:80)
+                 +---------------+                        
+                 |               |       +-----------------+
+                 |               |       |                 |
+                 |               |       |      nginx1     |
+                 |               |       |  (nginx-hello)  |
+                 |               +------->                 |
++---------------->   nginx-plus  |       +-----------------+
+                 |     (ADC)     |
+www.example.com  |               |       +-----------------+
+HTTP/Port 80     |               +------->                 |
+                 |               |       |      nginx1     |
+www2.example.com |               |       |  (nginx-hello)  |
+HTTP/Port 443    |               |       |                 |
+                 |               |       +-----------------+
+                 |               |
+                 |               |
+                 |               |      (dynamic upstream - empty)
+                 |               |
+                 |               +-------> *
+                 |               |
+                 +---------------+                        
+                                        
+```
+
+## Prerequisites:
+
+1. A Docker host. With [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+
+2. **Optional**: The demo uses hostnames: `example.com`, `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
+
+For example on Linux/Unix/MacOS the host file is `/etc/hosts`
+
+```bash
+# NGINX Plus SE challenge demo (local docker host)
+127.0.0.1 example.com www.example.com www2.example.com
+```
+
+Note: DNS resolution between containers is provided automatically by docker networking
+
+## Build and run the demo environment
+
+### Build the demo
+
+In this demo we will have a one NGINX Plus ADC/load balancer (`nginx-plus`) and two NGINX OSS webserver (`nginx1` and `nginx2`)
+
+Before we can start, we need to copy our NGINX Plus repo key and certificate (`nginx-repo.key` and `nginx-repo.crt`) into the directory, `nginx-plus/etc/ssl/nginx/`, then build our stack:
+
+```bash
+# Enter working directory
+cd nginx_challenge
+
+# Make sure your Nginx Plus repo key and certificate exist here
+ls nginx-plus/etc/ssl/nginx/nginx-*
+nginx-repo.crt              nginx-repo.key
+
+# Downloaded docker images and build
+docker-compose pull
+docker-compose build --no-cache
+```
+
+-----------------------
+> See other other useful [`docker`](docs/useful-docker-commands.md) and [`docker-compose`](docs/useful-docker-compose-commands.md) commands
+-----------------------
+
+#### Start the Demo stack:
+
+Run `docker-compose` in the foreground so we can see real-time log output to the terminal:
+
+```bash
+docker-compose up
+```
+
+Or, if you made changes to any of the Docker containers or NGINX configurations, run:
+
+```bash
+# Recreate containers and start demo
+docker-compose up --force-recreate
+```
+
+The demo environment is ready in seconds. You can access the `nginx-hello` demo website on **HTTP / Port 80** ([`http://localhost`](http://localhost) and the NGINX API on **HTTP / Port 8080** ([`http://localhost:8080`](http://localhost)
+
+You should also be able to access the `nginx-hello` demo, expecting the host header `www2.example.com`, over **HTTPS / Port 443** ([`http://www2.example.com`](http://www2.example.com)
+
+## The SE Challenge
+
+### Technical Requirements 
+
+See the Minimum requirements and Extra Credit requirements below. 
+
+Cloning your repository and typing “docker-compose up” should be only steps to get your demo environement up and running
+
+#### The following is the provided base setup:
+
+* Three Nodes in total: one NGINX load balancer, two HTTP services running [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello) 
+* A HTTP Service for `www.example.com`
+* A Upstream group named `nginx_hello` containing two webservers, `nginx1` and `nginx2` 
+* Client traffic for `www.example.com` and default HTTP port 80 traffic is load balanced using the default load balancing algorithm, round-robin, across the two [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello) HTTP services 
+* A empty upstream group named `dynamic` 
+* [NGINX Plus Live Activity Monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring/) on port 8080
+
+#### Minimum requirements
+
+The following is minimum addtions to be configured
+
+* HTTPS service for `www2.example.com` traffic over Port 443 (**Use a self-signed certificates provided**). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP (i.e. Client -> HTTPS -> NGINX -> HTTP -> webserver)
+* HTTP to HTTPS redirect service for `www2.example.com`
+
+#### Extra Credits  
+
+Enable any of the following features on the NGINX Plus load balancer for extra credits:
+
+* Enable a Active HTTP Health Check: Periodically check the health of upstream servers by sending a custom health‑check requests to each server and verifying the correct response. E.g. check for a `HTTP 200` response and `content type: text/html`
+* Enable a HTTP load balancing algorithm methods **other than the default**, round-robin  
+* Provide the [`curl`](https://ec.haxx.se/http-cheatsheet.html) (or similar tool) command to add and remove server from the NGINX upstream named `dynamic`. 
+* Create a `HTTP 301` URL redirect for `/old-url` to `/new-url`
+* Enable Proxy caching for image files only. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
+* Provide the command to execute a the NGINX command on the a running container, e.g.  `nginx -t` to check nginx config file and `nginx -s reload` to Reload the configuration file
+* Add another web server instance, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname `nginx3` and add to the load balancing group `nginx_hello`
