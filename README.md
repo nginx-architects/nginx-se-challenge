@@ -21,6 +21,8 @@ This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and 
 
  * [**nginx-hello**](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello). A NGINX webserver that serves a simple page containing its hostname, IP address and port as wells as the request URI and the local time of the webserver.
 
+### Topology
+
 ```
 # The base demo environement
                                         (nginx-hello upstream: nginx1:80, nginx2:80)
@@ -30,22 +32,45 @@ This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and 
                  |               |       |      nginx1     |
                  |               |       |  (nginx-hello)  |
                  |               +------->                 |
-+---------------->   nginx-plus  |       +-----------------+
-                 |     (ADC)     |
-www.example.com  |               |       +-----------------+
-HTTP/Port 80     |               +------->                 |
-                 |               |       |      nginx1     |
++---------------->               |       +-----------------+
+www.example.com  |               |
+HTTP/Port 80     |               |       +-----------------+
+                 |  nginx-plus   +------->                 |
++---------------->    (ADC)      |       |      nginx1     |
 www2.example.com |               |       |  (nginx-hello)  |
 HTTP/Port 443    |               |       |                 |
                  |               |       +-----------------+
-                 |               |
-                 |               |
-                 |               |      (dynamic upstream - empty)
-                 |               |
++---------------->               |
+NGINX Dashboard/ |               |
+API              |               |      (dynamic upstream - empty)
+HTTP/Port 8080   |               |
                  |               +-------> *
                  |               |
                  +---------------+                        
                                         
+```
+
+### File Structure
+
+```
+etc/
+└── nginx/
+    ├── conf.d/
+    │   ├── example.com.conf .......Virtual Server configuration for www.example.com
+    │   ├── upstreams.conf..........Upstream configurations
+    │   └── status_api.conf.........NGINX Plus Live Activity Monitoring available on port 8080
+    └── nginx.conf .................Main NGINX configuration file with global settings
+└── ssl/
+    └── nginx/
+    │    ├── nginx-repo.crt.........NGINX Plus repository certificate file (Use your evaluation crt file)
+    │    └── nginx-repo.key.........NGINX Plus repository key file (Use your evaluation key file)
+    ├── dhparam/
+    │    ├── 2048
+    │    │    └──nginx-repo.crt.....2048 bit DH parameters
+    │    └── 4096
+    │        └──nginx-repo.crt......4096 bit DH parameters
+    ├── example.com.crt.............Self-signed wildcard cert for *.example.com
+    └── example.com.key.............Private key for Self-signed wildcard cert for *.example.com 
 ```
 
 ## Prerequisites:
