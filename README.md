@@ -1,10 +1,10 @@
-# NGINX SE Challenge
+``# NGINX SE Challenge
 
-Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for 2 or more HTTP services.
+Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for two or more HTTP services.
 
-You are tasked to build upon the demo environement. 
+See the SE Challenge Minimum and extra credit requirements below
 
-Please share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+You are tasked to build upon the demo environement and share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
 
 ### Goals 
 
@@ -146,4 +146,4 @@ Enable any of the following features on the NGINX Plus load balancer for extra c
 
 ## Q&A 
 
-* This doesn’t need to be done in a vacuum.  You can always ask questions at any step along the way.  Clarity is important so you will not be penalized for asking any questions. 
+* This doesn’t need to be done in a vacuum.  You can always ask questions at any step along the way.  Clarity is important so you will not be penalized for asking any questions.
