@@ -10,15 +10,7 @@ services:
       hostname: nginx2
       build: nginx-hello
       ports:
-        - "80"
-  # EDITS-START
-  # Simply Add another server like so:    
-  nginx3:
-      hostname: nginx3
-      build: nginx-hello
-      ports:
-        - "80"
-  # EDITS-END  
+        - "80" 
   # NGINX Plus Load Balancer       
   nginx-plus:
       hostname: nginx-plus

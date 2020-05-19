@@ -96,6 +96,8 @@ For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 
 ## Build and run the demo environment
 
+Provided the Prerequisites have been met before running the stpes below, this is a **working** environment. 
+
 ### Build the demo
 
 In this demo we will have a one NGINX Plus ADC/load balancer (`nginx-plus`) and two NGINX OSS webserver (`nginx1` and `nginx2`)
@@ -133,6 +135,8 @@ Or, if you made changes to any of the Docker containers or NGINX configurations,
 # Recreate containers and start demo
 docker-compose up --force-recreate
 ```
+
+**Confirm** the containers are running
 
 The demo environment is ready in seconds. You can access the `nginx-hello` demo website on **HTTP / Port 80** ([`http://localhost`](http://localhost) or [http://www.example.com](http://example.com)) and the NGINX API on **HTTP / Port 8080** ([`http://localhost:8080`](http://localhost))
 
@@ -173,7 +177,7 @@ Enable any of the following features on the NGINX Plus load balancer for extra c
 * Create a `HTTP 301` URL redirect for `/old-url` to `/new-url`
 * Enable Proxy caching for image files only. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
 * Provide the command to execute a the NGINX command on the a running container, e.g.  `nginx -t` to check nginx config file and `nginx -s reload` to Reload the configuration file
-* Add another web server instance, in the `docker-compose.yml` file, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add the new server to the upstream group, `nginx_hello`
+* Add another web server instance in the `docker-compose.yml` file, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add the new server to the upstream group, `nginx_hello`
 
 ## Q&A 
 
