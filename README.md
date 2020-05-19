@@ -150,7 +150,7 @@ The demo environment is ready in seconds. You can access the `nginx-hello` demo 
 
 You should also be able to access the `nginx-hello` demo, expecting the host header `www2.example.com`, over **HTTPS / Port 443** (i.e. [`https://www2.example.com`](https://www2.example.com))
 
-> If any of three expected containers are not running or you **suspect the environement is broken**:
+> If any of the three expected containers are not running, or you **suspect the environement is broken**:
 > **STOP** and contact your NGINX contact for help :-)
 
 ## The SE Challenge 
