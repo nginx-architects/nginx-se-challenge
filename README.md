@@ -173,7 +173,7 @@ Enable any of the following features on the NGINX Plus load balancer for extra c
 * Create a `HTTP 301` URL redirect for `/old-url` to `/new-url`
 * Enable Proxy caching for image files only. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
 * Provide the command to execute a the NGINX command on the a running container, e.g.  `nginx -t` to check nginx config file and `nginx -s reload` to Reload the configuration file
-* Add another web server instance, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add to the upstream group, `nginx_hello`
+* Add another web server instance, in the `docker-compose.yml` file, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add the new server to the upstream group, `nginx_hello`
 
 ## Q&A 
 
