@@ -88,7 +88,7 @@ For example on Linux/Unix/MacOS the host file is `/etc/hosts`
 127.0.0.1 www.example.com www2.example.com
 ```
 
-**Note: DNS resolution between containers is provided automatically by docker networking**
+**Note: NGINX has been preconfigured to use the Docker DNS server (127.0.0.11) to provide DNS resolution between containers**
 
 ## Build and run the demo environment
 
