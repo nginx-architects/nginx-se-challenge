@@ -107,7 +107,7 @@ docker-compose up --force-recreate
 
 The demo environment is ready in seconds. You can access the `nginx-hello` demo website on **HTTP / Port 80** ([`http://localhost`](http://localhost)) and the NGINX API on **HTTP / Port 8080** ([`http://localhost:8080`](http://localhost))
 
-You should also be able to access the `nginx-hello` demo, expecting the host header `www2.example.com`, over **HTTPS / Port 443** ([`http://www2.example.com`](http://www2.example.com)
+You should also be able to access the `nginx-hello` demo, expecting the host header `www2.example.com`, over **HTTPS / Port 443** (i.e. [`http://www2.example.com`](http://www2.example.com))
 
 ## The SE Challenge
 
