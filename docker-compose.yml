@@ -9,7 +9,7 @@ services:
   nginx2:
       hostname: nginx2
       build: nginx-hello
-      ports:
+      expose:
         - "80" 
   # NGINX Plus Load Balancer       
   nginx-plus:
