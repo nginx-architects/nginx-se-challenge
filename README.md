@@ -4,7 +4,7 @@ Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for tw
 
 See the SE Challenge Minimum and extra credit requirements below
 
-You are tasked to build from the demo environment  and share the completed solution as a **Private repository** on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+You are tasked to build from the demo environment and share the completed solution as a **Private repository** on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
 
 Be prepared to present your demo environment and articulate the value of NGINX Plus
 
