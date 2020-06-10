@@ -179,9 +179,11 @@ As you complete the tasks think about:
 
 The following is minimum addtions to be configured:
 
-* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP, i.e. Client --HTTPS--> NGINX (SSL termination) --HTTP--> webserver
-* HTTP to HTTPS redirect service for `www2.example.com`, i.e. Client --HTTP--> NGINX (redirect) --HTTPS--> NGINX (SSL termination) --HTTP--> webserver
-* Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers. How would you confirm this?
+* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP, i.e. `Client --HTTPS--> NGINX (SSL termination) --HTTP--> webserver`
+    * What are some TLS Best practices that should be considered here?
+* HTTP to HTTPS redirect service for `www2.example.com`, i.e. `Client --HTTP--> NGINX (redirect) --HTTPS--> NGINX (SSL termination) --HTTP--> webserver`
+* Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers. 
+    * How would you test and confirm this has been enabled?
 
 #### Extra Credits  
 
