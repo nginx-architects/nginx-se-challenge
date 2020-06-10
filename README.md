@@ -4,9 +4,9 @@ Implement NGINX Plus as an HTTP and HTTPS (SSL terminating) load balancer for tw
 
 See the SE Challenge Minimum and extra credit requirements below
 
-You are tasked to build from the demo environement and share the completed solution as a public repository on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
+You are tasked to build from the demo environement and share the completed solution as a **Private repository** on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
 
-Be prepared to present your demo environement and articulate the value of NGINX Plus
+Be prepared to present your demo environment and articulate the value of NGINX Plus
 
 ### Goals 
 
@@ -37,17 +37,17 @@ The base demo environement you are tasked to build from
 www.example.com  |               |
 HTTP/Port 80     |               |       +-----------------+
                  |  nginx-plus   +------->                 |
-+---------------->    (ADC)      |       |      nginx2     |
-www2.example.com |               |       |  (nginx-hello)  |
-HTTP/Port 443    |               |       |                 |
+                 | (ADC)         |       |      nginx2     |
+                 |               |       |  (nginx-hello)  |
+                 |               |       |                 |
                  |               |       +-----------------+
 +---------------->               |
-NGINX Dashboard/ |               |
-API              |               |      (dynamic upstream - empty)
-HTTP/Port 8080   |               |
-                 |               +-------> *
-                 |               |
-                 +---------------+                        
+NGINX Dashboard/ |               |      (dynamic upstream - empty)
+API              |               |       +-----------------+
+HTTP/Port 8080   |               |       |                 |
+                 |               +------->        *        |
+                 |               |       |                 |
+                 +---------------+       +-----------------+                 
                                         
 ```
 
@@ -172,21 +172,27 @@ Cloning your repository and typing “docker-compose up” should be only steps 
 
 #### Minimum requirements
 
-The following is minimum addtions to be configured
+As you complete the tasks think about:
+ * How did you arrive at your solution? (troubleshooting process, challenges, resources used, etc.)
+ * Can you articulate what is happening to a techical and non-techical audience?
+ * What value does the following feature provide? and what use-cases would benefit from these capabilites?
 
-* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP (i.e. Client -> HTTPS -> NGINX -> HTTP -> webserver)
-* HTTP to HTTPS redirect service for `www2.example.com`
-* Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers
+The following is minimum addtions to be configured:
+
+* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP, i.e. Client --HTTPS--> NGINX (SSL termination) --HTTP--> webserver
+* HTTP to HTTPS redirect service for `www2.example.com`, i.e. Client --HTTP--> NGINX (redirect) --HTTPS--> NGINX (SSL termination) --HTTP--> webserver
+* Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers. How would you confirm this?
 
 #### Extra Credits  
 
 Enable any of the following features on the NGINX Plus load balancer for extra credits:
 
-* Enable a Active HTTP Health Check: Periodically check the health of upstream servers by sending a custom health‑check requests to each server and verifying the correct response. E.g. check for a `HTTP 200` response and `content type: text/html`
+* Enable a Active HTTP Health Check: Periodically check the health of upstream servers by sending a custom health‑check requests to each server and verifying the correct response. e.g. check for a `HTTP 200` response and `content type: text/html`
 * Enable a HTTP load balancing algorithm methods **other than the default**, round-robin  
-* Provide the [`curl`](https://ec.haxx.se/http-cheatsheet.html) (or similar tool) command to add and remove server from the NGINX upstream named `dynamic`. 
+* Provide the [`curl`](https://ec.haxx.se/http-cheatsheet.html) (or similar tool) command to add and remove server from the NGINX upstream named `dynamic` via the NGINX API. 
 * Create a `HTTP 301` URL redirect for `/old-url` to `/new-url`
-* Enable Proxy caching for image files only. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
+* Enable Proxy caching for **image files only**. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
+* Enable any Session persistence method to routes all requests in a given use session to the same upstream server
 * Provide the command to execute a the NGINX command on the a running container, e.g.  `nginx -t` to check nginx config file and `nginx -s reload` to Reload the configuration file
 * Add another web server instance in the `docker-compose.yml` file, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add the new server to the upstream group, `nginx_hello`
 
