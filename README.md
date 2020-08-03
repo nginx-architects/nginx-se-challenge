@@ -6,24 +6,24 @@ See the SE Challenge Minimum and extra credit requirements below
 
 You are tasked to build from the demo environment and share the completed solution as a **Private repository** on [GitHub](https://www.github.com) or [Gitlab](https://www.gitlab.com).  
 
-Be prepared to present your demo environment and articulate the value of NGINX Plus
+Be prepared to present your demo environment and articulate the value of NGINX Plus.
 
 ### Goals 
 
  * Give us an understanding of how you operate as a Solution Engineer 
  * Give you a feel for what it is like to work with NGINX Plus
 
-## The Demo environement
+## The Demo environment
 
-This demo has two components, a NGINX Plus ADC/load balancer (`nginx-plus`) and webservers (`nginx1` and `nginx2`):
+This demo has two components, an NGINX Plus ADC/load balancer (`nginx-plus`) and webservers (`nginx1` and `nginx2`):
 
- * **NGINX Plus** `(R21)` based on centos 7. [NGINX Plus Documentation](https://docs.nginx.com/nginx/), and [resources](https://www.nginx.com/resources/) and [blog](https://www.nginx.com/blog/) is your best source of information for technical help. Detailed examples are found on the internet too!
+ * **NGINX Plus** `(R21)` based on centos 7. [NGINX Plus Documentation](https://docs.nginx.com/nginx/) and [resources](https://www.nginx.com/resources/) and [blog](https://www.nginx.com/blog/) is your best source of information for technical help. Detailed examples are found on the internet too!
 
- * [**nginx-hello**](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello). A NGINX webserver that serves a simple page containing its hostname, IP address and port as wells as the request URI and the local time of the webserver.
+ * [**nginx-hello**](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello). An NGINX webserver that serves a simple page containing its hostname, IP address and port, and the request URI and the local time of the webserver.
 
 ### Topology
 
-The base demo environement you are tasked to build from
+The base demo environment you are tasked to build from
 
 ```
                                         (nginx-hello upstream: nginx1:80, nginx2:80)
@@ -80,9 +80,9 @@ etc/
 
 2. A Docker host. With [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 
-3. **Optional**: The demo uses hostnames: `www.example.com` and `www2.example.com`. For host name resolution you will need to add hostname bindings to your hosts file:
+3. **Optional**: The demo uses hostnames: `www.example.com` and `www2.example.com`. For hostname resolution you will need to add hostname bindings to your hosts file:
 
-For example on Linux/Unix/MacOS the host file is `/etc/hosts`
+For example, on Linux/Unix/macOS the host file is `/etc/hosts`
 
 ```bash
 # NGINX Plus SE challenge demo (local docker host)
@@ -157,29 +157,29 @@ You should also be able to access the `nginx-hello` demo, expecting the host hea
 
 ### Technical Requirements 
 
-See the Minimum requirements and Extra Credit requirements below. 
+See the Minimum requirements and Extra Credit requirements below.
 
-Cloning your repository and typing “docker-compose up” should be only steps to get your demo environement up and running
+Cloning your repository and typing “docker-compose up” should be only steps to get your demo environment up and running.
 
 #### The following is the provided base setup:
 
 * Three Nodes in total: one NGINX load balancer, two HTTP services running [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello) 
-* A HTTP Service for `www.example.com`
-* A Upstream group named `nginx_hello` containing two webservers, `nginx1` and `nginx2` 
-* Client traffic for `www.example.com` and default HTTP port 80 traffic is load balanced using the default load balancing algorithm, round-robin, across the two [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello) HTTP services 
-* A empty upstream group named `dynamic` 
+* An HTTP Service for `www.example.com`
+* An Upstream group named `nginx_hello` containing two webservers, `nginx1` and `nginx2` 
+* Client traffic for `www.example.com` and default HTTP port 80 traffic is load balanced using the default load balancing algorithm, round-robin, across the two [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello) HTTP services. 
+* An empty upstream group named `dynamic` 
 * [NGINX Plus Live Activity Monitoring](https://www.nginx.com/products/nginx/live-activity-monitoring/) on port 8080
 
 #### Minimum requirements
 
 As you complete the tasks think about:
  * How did you arrive at your solution? (troubleshooting process, challenges, resources used, etc.)
- * Can you articulate what is happening to a techical and non-techical audience?
- * What value does the following feature provide? and what use-cases would benefit from these capabilites?
+ * Can you articulate what is happening to a technical and non-technical audience?
+ * What value does the following feature provide? And what use-cases would benefit from these capabilities?
 
-The following is minimum addtions to be configured:
+The following is minimum additions to be configured:
 
-* HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX PLus SSL termination on the load balancer and proxy upstream servers over HTTP, i.e. `Client --HTTPS--> NGINX (SSL termination) --HTTP--> webserver`
+* A HTTPS service for `www2.example.com` traffic over Port 443 (You can use the self-signed certificates provided). Configure NGINX Plus SSL termination on the load balancer and proxy upstream servers over HTTP, i.e. `Client --HTTPS--> NGINX (SSL termination) --HTTP--> webserver`
     * What are some TLS Best practices that should be considered here?
 * HTTP to HTTPS redirect service for `www2.example.com`, i.e. `Client --HTTP--> NGINX (redirect) --HTTPS--> NGINX (SSL termination) --HTTP--> webserver`
 * Enable [keepalive connections](https://www.nginx.com/blog/http-keepalives-and-web-performance/) to upstream servers. 
@@ -189,15 +189,15 @@ The following is minimum addtions to be configured:
 
 Enable any of the following features on the NGINX Plus load balancer for extra credits:
 
-* Enable a Active HTTP Health Check: Periodically check the health of upstream servers by sending a custom health‑check requests to each server and verifying the correct response. e.g. check for a `HTTP 200` response and `content type: text/html`
-* Enable a HTTP load balancing algorithm methods **other than the default**, round-robin  
-* Provide the [`curl`](https://ec.haxx.se/http-cheatsheet.html) (or similar tool) command to add and remove server from the NGINX upstream named `dynamic` via the NGINX API. 
+* Enable an Active HTTP Health Check: Periodically check the health of upstream servers by sending a custom health‑check requests to each server and verifying the correct response. e.g. check for a `HTTP 200` response and `Content-Type: text/html`
+* Enable an HTTP load balancing algorithm methods **other than the default**, round-robin  
+* Provide the [`curl`](https://ec.haxx.se/http-cheatsheet.html) (or similar tool) command to add and remove the server from the NGINX upstream named `dynamic` via the NGINX API. 
 * Create a `HTTP 301` URL redirect for `/old-url` to `/new-url`
 * Enable Proxy caching for **image files only**. Use the Cache folder provisioned on `/var/cache/nginx`, i.e. set `proxy_cache_path` to `/var/cache/nginx`. Validate the test image http://www.example.com/smile.png is cached on NGINX
-* Enable any Session persistence method to routes all requests in a given use session to the same upstream server
-* Provide the command to execute a the NGINX command on the a running container, e.g.  `nginx -t` to check nginx config file and `nginx -s reload` to Reload the configuration file
+* Enable any Session persistence method to routes all requests in a given user session to the same upstream server
+* Provide the command to execute the NGINX command on the running container, e.g., `nginx -t` to check nginx config file and `nginx -s reload` to reload the configuration file.
 * Add another web server instance in the `docker-compose.yml` file, using the same [nginx-hello](https://github.com/nginxinc/NGINX-Demos/tree/master/nginx-hello), with the hostname, `nginx3`, and add the new server to the upstream group, `nginx_hello`
 
 ## Q&A 
 
-* **This does not need to be done in a vacuum**.  You can always ask questions at any step along the way.  Clarity is important so you will not be penalized for asking any questions.
+* **This Project does not need to be done in a vacuum**. You can always ask questions at any step along the way. Clarity is essential, so you will not be penalized for asking any questions.
