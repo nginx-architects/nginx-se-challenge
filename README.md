@@ -67,9 +67,9 @@ etc/
     │    └── nginx-repo.key.........NGINX Plus repository key file (Use your evaluation key file)
     ├── dhparam/
     │    ├── 2048
-    │    │    └──nginx-repo.crt.....2048 bit DH parameters
+    │    │    └──dhparam.pem........2048 bit DH parameters
     │    └── 4096
-    │        └──nginx-repo.crt......4096 bit DH parameters
+    │        └──dhparam.pem.........4096 bit DH parameters
     ├── example.com.crt.............Self-signed wildcard cert for *.example.com
     └── example.com.key.............Private key for Self-signed wildcard cert for *.example.com 
 ```
