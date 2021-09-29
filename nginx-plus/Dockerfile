@@ -10,7 +10,7 @@ COPY etc/ssl/nginx/nginx-repo.crt /etc/ssl/nginx/nginx-repo.crt
 COPY etc/ssl/nginx/nginx-repo.key /etc/ssl/nginx/nginx-repo.key
 RUN chmod 644 /etc/ssl/nginx/* \
 # Install prerequisite packages and vim for editing:
- && yum install -y --setopt=tsflags=nodocs ca-certificates bind-utils wget bind-utils vim-minimal \
+ && yum install -y --setopt=tsflags=nodocs ca-certificates bind-utils wget vim-minimal \
  # Prepare repo config and install NGINX Plus (https://cs.nginx.com/repo_setup)
  && wget -q -O /etc/yum.repos.d/nginx-plus-7.repo https://cs.nginx.com/static/files/nginx-plus-7.repo \
  && yum install -y --setopt=tsflags=nodocs nginx-plus \
